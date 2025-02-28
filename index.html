@@ -3,22 +3,117 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Aangifte Erfbelasting | NS</title>
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/script.js" defer></script>
+    <link
+      rel="icon"
+      type="image/png"
+      href="./favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./favicon/apple-touch-icon.png"
+    />
+    <meta
+      name="apple-mobile-web-app-title"
+      content="NS Aangifte Erfbelasting"
+    />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
   </head>
   <body>
     <header></header>
     <main>
-      <section>
-        <h1>TEST</h1>
+      <div class="school-project-warning">
+        <p>
+          <span>let op!</span>
+          Dit is een schoolproject en geen officiële website van de Nederlandse
+          Spoorwegen.
+        </p>
+      </div>
+      <section class="form-section">
+        <h1>NS Aangifte Erfbelasting</h1>
         <form action="/" method="post">
-          <!-- <label for="">
-                <input type="text" name="" id="" />
-              </label> -->
+          <h2>Gegevens van de overledene</h2>
+          <fieldset name="1A">
+            <label>
+              Voorletters
+              <input
+                required
+                placeholder="Bijv. John"
+                type="text"
+                name="first-name"
+                id="first-name"
+              />
+            </label>
+            <label>
+              Tussenvoegsels
+              <input
+                required
+                placeholder="Bijv. van der"
+                type="text"
+                autocomplete="additional-name"
+                name="preposition"
+                id="preposition"
+              />
+            </label>
+            <label>
+              Achternaam
+              <input
+                required
+                placeholder="Bijv. Bakker"
+                type="text"
+                autocomplete="family-name"
+                name="last-name"
+                id="last-name"
+              />
+            </label>
+
+            <label>
+              BSN (Burger Service Nummer) overledene
+              <input
+                required
+                type="text"
+                name="social-security-number"
+                id="social-security-number"
+                minlength="9"
+                maxlength="9"
+                pattern="[0-9]{9}"
+              />
+            </label>
+
+            <label>
+              Overlijdensdatum
+              <input
+                required
+                type="date"
+                name="date-of-death"
+                id="date-of-death"
+                max="2025-02-28"
+              />
+            </label>
+
+            <a href="/gegevens-gemachtigde">Volgende</a>
+          </fieldset>
         </form>
       </section>
     </main>
     <footer></footer>
   </body>
 </html>
+
+<!-- 
+  TODO:
+
+  MAKE A FIELDSET FOR EACH QUESTION 1A, 1B ETC.
+
+  1. Voorletters, tussenvoegsels & achternaam (1A)
+  2. BSN (1A)
+  3. Overlijdensdatum (1A)
+  4. Getrouwd (1B) -> If yes klap andere vragen uit else go to 1C
+  5. Testament? (1D)
+-->
