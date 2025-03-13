@@ -37,23 +37,24 @@
       </div>
       <section class="form-section">
         <h1>NS Aangifte Erfbelasting</h1>
+
         <form action="/" method="post">
           <h2>Gegevens van de overledene</h2>
-          <fieldset name="1A">
+          <fieldset name="1a">
             <label>
               Voorletters
               <input
                 required
-                placeholder="Bijv. John"
+                placeholder="Bijv. J.R."
                 type="text"
-                name="first-name"
-                id="first-name"
+                pattern="^(?=.*[A-Za-z])[A-Za-z. ]+$"
+                name="initials"
+                id="initials"
               />
             </label>
             <label>
               Tussenvoegsels
               <input
-                required
                 placeholder="Bijv. van der"
                 type="text"
                 autocomplete="additional-name"
@@ -73,17 +74,23 @@
               />
             </label>
 
-            <label>
+            <label class="social-security-number-label">
               BSN (Burger Service Nummer) overledene
-              <input
-                required
-                type="text"
-                name="social-security-number"
-                id="social-security-number"
-                minlength="9"
-                maxlength="9"
-                pattern="[0-9]{9}"
-              />
+              <!-- TODO: How to make input type number maxlength 1? -->
+              <div>
+                <input
+                  required
+                  type="text"
+                  inputmode="numeric"
+                  name="social-security-number"
+                  id="social-security-number-1"
+                  maxlength="9"
+                  min="0"
+                  max="9"
+                  placeholder="918273645"
+                  pattern="\d{9}"
+                />
+              </div>
             </label>
 
             <label>
@@ -93,11 +100,37 @@
                 type="date"
                 name="date-of-death"
                 id="date-of-death"
-                max="2025-02-28"
+                max="2025-03-11"
               />
             </label>
 
-            <a href="/gegevens-gemachtigde">Volgende</a>
+            <button type="submit" class="submit-button">Volgende</button>
+          </fieldset>
+
+          <fieldset name="1b">
+            Was de overledene getrouwd of had de overledene een geregistreerd
+            partner op het moment van overlijden?
+            <label class="married-label">
+              Ja
+              <input value="yes" type="radio" name="married" id="married" />
+            </label>
+            <label class="married-label">
+              Nee
+              <input value="no" type="radio" name="married" id="married" />
+            </label>
+          </fieldset>
+
+          <fieldset name="1c">
+            Was de overledene getrouwd of had de overledene een geregistreerd
+            partner op het moment van overlijden?
+            <label class="married-label">
+              Ja
+              <input value="yes" type="radio" name="married" id="married" />
+            </label>
+            <label class="married-label">
+              Nee
+              <input value="no" type="radio" name="married" id="married" />
+            </label>
           </fieldset>
         </form>
       </section>
@@ -110,10 +143,18 @@
   TODO:
 
   MAKE A FIELDSET FOR EACH QUESTION 1A, 1B ETC.
+  MAAK ALLES OP DEZELFDE PAGINA
 
-  1. Voorletters, tussenvoegsels & achternaam (1A)
-  2. BSN (1A)
-  3. Overlijdensdatum (1A)
   4. Getrouwd (1B) -> If yes klap andere vragen uit else go to 1C
   5. Testament? (1D)
+  
+  6. Verkrijger toevoegen
+  7. Ja nee uitklappen
+-->
+
+<!-- 
+  TODO:
+
+  1. 
+
 -->

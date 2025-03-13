@@ -45,9 +45,15 @@ Tijdens deze eerste feedback sessie zat ik met mijn groepje en Krijn. Hierbij li
 
 ### Woensdag 5 Mar
 
+Ik was helaas sinds dinsdag 4 Maart ziek geworden en heb geen werk kunnen doen.
+
 ### Donderdag 6 Mar
 
+Ik was helaas sinds dinsdag 4 Maart ziek geworden en heb geen werk kunnen doen.
+
 ### Vrijdag 7 Mar
+
+Ik was helaas sinds dinsdag 4 Maart ziek geworden en heb geen werk kunnen doen.
 
 ## Week 3
 
