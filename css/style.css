@@ -1,3 +1,5 @@
+/* IMPORTING NS FONT */
+
 @font-face {
   font-family: "NS Sans";
   src: url("../fonts/nssans-regular.woff2");
@@ -31,6 +33,8 @@
   font-weight: bold;
   font-style: italic;
 }
+
+/* DEFAULT STYLING */
 
 * {
   margin: 0;
@@ -67,6 +71,8 @@ body {
   color: var(--black);
 }
 
+/* SET CURSOR TO POINTER WHEN HOVERING OVER THESE INPUTS */
+
 input[type="radio"]:hover,
 input[type="file"]:hover,
 input[type="date"]:hover,
@@ -74,20 +80,10 @@ label:hover {
   cursor: pointer;
 }
 
+/* THE DATE INPUT HAD A DIFFERENT FONT SO I HAD TO REDECLARE IT */
+
 input[type="date"] {
   font-family: "NS Sans", "Segoe UI", "Myriad", "Verdana", "sans-serif";
-}
-
-.school-project-warning {
-  background-color: var(--yellow);
-  color: var(--dark-blue);
-  padding: 0.625rem;
-  text-align: center;
-}
-
-.school-project-warning spam {
-  font-weight: bold;
-  text-transform: uppercase;
 }
 
 h1,
@@ -108,8 +104,23 @@ h1 {
 
 legend {
   font-size: 1.5em;
+  margin-bottom: 2rem;
   font-weight: bold;
 }
+
+.school-project-warning {
+  background-color: var(--yellow);
+  color: var(--dark-blue);
+  padding: 0.625rem;
+  text-align: center;
+}
+
+.school-project-warning spam {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* SET PADDING ON THE FORM CONTAINER */
 
 .form-section {
   padding: 10vh 10vw;
@@ -121,176 +132,13 @@ form {
   gap: 2rem;
 }
 
-.next-button {
-  font-size: 0.875rem;
-  cursor: pointer;
-  display: block;
-  border: none;
-  border-radius: 0.25rem;
-  background-color: var(--light-blue);
-  color: white;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  padding: 0.625rem 1.125rem;
-  text-align: center;
-  z-index: 1;
-  width: fit-content;
-}
-
-.next-button::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background-color: var(--hover-blue);
-  transition: 0.3s;
-  transform: translateY(100%);
-}
-
-.next-button:hover::after {
-  transform: translateY(0);
-}
-
-.next-button:focus-visible::after {
-  transform: translateY(0);
-}
-
-.next-button:active::after {
-  background-color: var(--dark-blue);
-}
-
-.submit-button {
-  font-size: 0.875rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 0.25rem;
-  background-color: var(--light-blue);
-  color: white;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  padding: 0.625rem 1.125rem;
-  text-align: center;
-  z-index: 1;
-  width: fit-content;
-}
-
-.submit-button::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background-color: var(--hover-blue);
-  transition: 0.3s;
-  transform: translateY(100%);
-}
-
-.submit-button:hover::after {
-  transform: translateY(0);
-}
-
-.submit-button:focus-visible::after {
-  transform: translateY(0);
-}
-
-.submit-button:active::after {
-  background-color: var(--dark-blue);
-}
-
-.fieldset-container {
-  padding-left: 8.375rem;
-  padding-right: 8.375rem;
-  outline: solid 1px var(--dark-blue);
-  background-color: var(--white);
-  padding: 2.5rem clamp(1rem, 7.072vw + -0.657rem, 5rem);
-}
-
-.info-icon {
-  width: 1rem;
-  height: 1rem;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  display: block;
-}
-
-.info-icon:hover svg,
-.info-icon:focus svg {
-  fill: var(--hover-blue);
-}
-
-.info-icon:active svg {
-  fill: var(--light-blue);
-}
-
-.info-icon::after {
-  padding: 1rem;
-  width: clamp(15rem, 20.356vw + 10.229rem, 20rem);
-  display: block;
-  position: absolute;
-  left: clamp(-15rem, 40.712vw + -29.542rem, -10rem);
-  top: -500%;
-  background-color: var(--white);
-  border: solid 1px var(--dark-blue);
-  transition: 200ms;
-  opacity: 0;
-}
-
-.info-icon:hover::after,
-.info-icon:focus::after,
-.info-icon:active::after {
-  opacity: 1;
-}
-
-.error-message {
-  color: red;
-  font-size: 12px;
-  font-weight: bold;
-  display: none;
-}
-
-.error-message svg {
-  width: 1rem;
-  height: 1rem;
-  fill: var(--black);
-}
-
-.social-security-number-label:has(input:user-invalid) .error-message {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.authorized-persons-container:has(input:user-invalid) .error-message {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.info-icon.social-security-number::after {
-  content: "Het BSN nummer is een uniek nummer dat u van de overheid heeft gekregen. Het bestaat uit 9 cijfers en is te vinden op uw paspoort, rijbewijs of identiteitskaart.";
-}
-
-.info-icon.authorized-persons::after {
-  content: "Het aantal gemachtigde personen dat u heeft aangewezen om uw erfenis af te handelen.";
-}
+/* FIELDSET STYLING */
 
 fieldset {
   border: none;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
-
-fieldset legend {
-  margin-bottom: 2rem;
 }
 
 fieldset label {
@@ -311,41 +159,7 @@ fieldset label:has(input[type="radio"])::before {
   transition: 500ms;
 }
 
-#section1b .partner-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  overflow: hidden;
-  transition: 1s;
-}
-
-#section1b .partner-container label {
-  justify-content: start;
-}
-
-#section1b .partner-container label:has(input[type="file"]) {
-  position: relative;
-  overflow: hidden;
-  transition: 1s;
-}
-
-#section1b .partner-container label input[type="file"] {
-  height: 50vh;
-  cursor: pointer;
-}
-
-#section1b .partner-container label:has(input[type="file"]) svg {
-  position: absolute;
-  width: 10%;
-  bottom: 30%;
-  left: 45%;
-  opacity: 0.5;
-}
-
-#section1b div:last-of-type {
-  display: flex;
-  gap: 0.75rem;
-}
+/* LABEL & INPUT STYLING WITH USER INVALID */
 
 label:has(input:user-invalid) {
   position: relative;
@@ -413,11 +227,185 @@ input[name="initials"]::placeholder {
   text-transform: none;
 }
 
+/* NS BRANDED BUTTONS */
+
+.next-button,
+.submit-button {
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: block;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: var(--light-blue);
+  color: white;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  padding: 0.625rem 1.125rem;
+  text-align: center;
+  z-index: 1;
+  width: fit-content;
+}
+
+/* HOVER/FOCUS STATE FOR NS BUTTONS */
+
+.next-button::after,
+.submit-button::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: var(--hover-blue);
+  transition: 0.3s;
+  transform: translateY(100%);
+}
+
+.next-button:hover::after,
+.submit-button:hover::after {
+  transform: translateY(0);
+}
+
+.next-button:focus-visible::after,
+.submit-button:focus-visible::after {
+  transform: translateY(0);
+}
+
+.next-button:active::after,
+.submit-button:active::after {
+  background-color: var(--dark-blue);
+}
+
+/* TO STYLE FIELDSET */
+
+.fieldset-container {
+  padding-left: 8.375rem;
+  padding-right: 8.375rem;
+  outline: solid 1px var(--dark-blue);
+  background-color: var(--white);
+  padding: 2.5rem clamp(1rem, 7.072vw + -0.657rem, 5rem);
+}
+
+/* STYLING OF THE INFORMATION ICON */
+
+.info-icon {
+  width: 1rem;
+  height: 1rem;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: block;
+}
+
+.info-icon:hover svg,
+.info-icon:focus svg {
+  fill: var(--hover-blue);
+}
+
+.info-icon:active svg {
+  fill: var(--light-blue);
+}
+
+/* THE STYLING OF THE INFORMATION MESSAGE */
+
+.info-icon::after {
+  padding: 1rem;
+  width: clamp(15rem, 20.356vw + 10.229rem, 20rem);
+  display: block;
+  position: absolute;
+  left: clamp(-15rem, 40.712vw + -29.542rem, -10rem);
+  top: -500%;
+  background-color: var(--white);
+  border: solid 1px var(--dark-blue);
+  transition: 200ms;
+  opacity: 0;
+}
+
+.info-icon:hover::after,
+.info-icon:focus::after,
+.info-icon:active::after {
+  opacity: 1;
+}
+
+/* UNIQUE INFO MESSAGE */
+
+.info-icon.social-security-number::after {
+  content: "Het BSN nummer is een uniek nummer dat u van de overheid heeft gekregen. Het bestaat uit 9 cijfers en is te vinden op uw paspoort, rijbewijs of identiteitskaart.";
+}
+
+.info-icon.authorized-persons::after {
+  content: "Het aantal gemachtigde personen dat u heeft aangewezen om uw erfenis af te handelen.";
+}
+
+/* ERROR MESSAGE STYLING */
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+  display: none;
+}
+
+.error-message svg {
+  width: 1rem;
+  height: 1rem;
+  fill: var(--black);
+}
+
+.social-security-number-label:has(input:user-invalid) .error-message,
+.authorized-persons-container:has(input:user-invalid) .error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* STYLING OF THE PARTNER CONTAINER (SECTION THAT OPENS OR CLOSES) */
+
+#section1b .partner-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+  transition: 1s;
+}
+
+#section1b .partner-container label {
+  justify-content: start;
+}
+
+#section1b .partner-container label:has(input[type="file"]) {
+  position: relative;
+  overflow: hidden;
+  transition: 1s;
+}
+
+#section1b .partner-container label input[type="file"] {
+  height: 50vh;
+  cursor: pointer;
+}
+
+#section1b .partner-container label:has(input[type="file"]) svg {
+  position: absolute;
+  width: 10%;
+  bottom: 30%;
+  left: 45%;
+  opacity: 0.5;
+}
+
+#section1b div:last-of-type {
+  display: flex;
+  gap: 0.75rem;
+}
+
 .social-security-number-label div {
   display: flex;
   gap: 0.5rem;
   align-items: center;
 }
+
+/* STYLING OF THE BALANCE INHERITANCE CALCULATION */
 
 .balance-inheritance div:has(> div) h2 {
   margin-bottom: 1rem;
@@ -478,6 +466,8 @@ input[name="initials"]::placeholder {
   -webkit-appearance: none;
   display: none;
 }
+
+/* RESPONSIVENESS */
 
 @media screen and (min-width: 1024px) {
   .name-container {

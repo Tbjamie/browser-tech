@@ -24,7 +24,7 @@ const marriageContractFileLabel = document.querySelector(
   ".marriage-contract-file-label"
 );
 
-// Balance Inheritance Input Fields
+// BALANCE INHERITANCE Input Fields
 
 // VALUE input fields
 const generalInboedelField = document.querySelector("input[name='g-inboedel']");
@@ -71,9 +71,13 @@ const totalPersonalBalanceInheritance = document.querySelector(
 // VARS
 const date = new Date();
 
+// SET TOTAL VALUES TO VISIBLE IF JS IS ENABLED
+
 totalValues.forEach((value) => {
   value.removeAttribute("hidden");
 });
+
+// OPEN AND CLOSING OF THE PARTNER CONTAINER
 
 marriedFields.forEach((field) => {
   field.addEventListener("change", () => {
@@ -85,6 +89,8 @@ marriedFields.forEach((field) => {
   });
 });
 
+// OPEN AND CLOSING OF THE MARRIAGE CONTRACT FILE INPUT
+
 marriageContractFields.forEach((field) => {
   field.addEventListener("change", () => {
     if (!marriageContractFieldYes.checked) {
@@ -94,6 +100,12 @@ marriageContractFields.forEach((field) => {
     }
   });
 });
+
+// SETTING MAX DATE OF DEATH INPUT TO CURRENT DATE
+
+dateOfDeathInput.setAttribute("max", date.toISOString().split("T")[0]);
+
+// SETTING MAX DATE OF MARRIAGE DATE INPUT TO DATE OF DEATH INPUT
 
 dateOfDeathInput.addEventListener("input", () => {
   marriageDateInput.setAttribute(
@@ -124,6 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
     marriageContractFileLabel.style.maxHeight = "50vh";
   }
 });
+
+// SETTING FIELDS TO LOCALSTORAGE
 
 inputFields.forEach((inputField) => {
   if (inputField.type === "file") {
@@ -167,11 +181,16 @@ inputFields.forEach((inputField) => {
   }
 });
 
-dateOfDeathInput.setAttribute("max", date.toISOString().split("T")[0]);
+// PREVENT DEFAULT ACTION ON SUBMIT AND LOG DATA
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  let formData = new FormData(form);
+  let data = Object.fromEntries(formData.entries());
+  console.log(data);
 });
+
+// PLACE A . AFTER EVERY LETTER IN THE INITIALS INPUT
 
 initialsInput.addEventListener("keyup", (e) => {
   if (e.key === "Backspace" || e.key === "." || !/^[a-zA-Z]$/.test(e.key)) {
@@ -180,9 +199,9 @@ initialsInput.addEventListener("keyup", (e) => {
   initialsInput.value = initialsInput.value + ".";
 });
 
-// Balance Inheritance Calculation
+// BALANCE INHERITANCE CALCULATION
 
-// FUNCTIES OM TUSSENTOTALEN TE BEREKENEN
+// FUNCTIONS TO CALCULATE SUBTOTAL
 
 function totalValueCalculation() {
   const value =
@@ -235,7 +254,7 @@ function totalPersonalBalanceInheritanceCalculation() {
   return total;
 }
 
-// TOTALE BEREKENING
+// TOTAL CALCULATION
 
 function calculateTotal() {
   totalBalanceInheritance.innerHTML = `<strong>Totaal:</strong> €${totalBalanceInheritanceCalculation().toFixed(

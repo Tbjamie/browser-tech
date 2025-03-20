@@ -63,11 +63,13 @@ Ik was helaas sinds dinsdag 4 Maart ziek geworden en heb geen werk kunnen doen.
 
 ### Donderdag 13 Mar
 
-Gewerkt aan code EERSTE TEST OP OUDE DEVICES
+- EERSTE TEST OP OUDE DEVICES
+- GESPREK MET JEREMY KEITH
+- Initials punten ertussen
 
 ### Vrijdag 14 Mar
 
-Gewerkt aan code
+- Uitklap section
 
 ## Week 4
 
@@ -76,6 +78,8 @@ Gewerkt aan code
 Error messages gemaakt
 
 CSS Nesting veranderd voor oudere browsers
+
+Information hover
 
 BUG JS Regel 121 (De code doet het alleen als de pagina refreshed)
 BUG DE HOVER VOOR DE EXTRA INFORMATIE GAAT OP HET PARENT ELEMENT
