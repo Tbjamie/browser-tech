@@ -63,23 +63,32 @@ Ik was helaas sinds dinsdag 4 Maart ziek geworden en heb geen werk kunnen doen.
 
 ### Donderdag 13 Mar
 
-- EERSTE TEST OP OUDE DEVICES
-- GESPREK MET JEREMY KEITH
-- Initials punten ertussen
+Ik heb vandaag de eerste test gedaan op oude devices en ik zag dat de werking van de website het over het algemeen goed deed, maar ik kwam erachter dat input[type="date"] bijvoorbeeld nog niet ondersteund werd, dus heb ik gezorgd dat ik in de label aangeef ik welk format ik de datum verwacht, zodat de gebruiken deze nog steeds correct uit kan voeren met een input[type="text"]. Het checken hiervan zou dan uiteraard gebeuren via server side code.
+
+Ook had ik een feedback gesprek met Jeremy Keith die erg interessant was, en een goede tip die ik had gekregen was om te zorgen dat alles standaard zichtbaar is en dat je met JavaScript iets niet zichtbaar maakt als je het bijvoorbeeld wilt uitklappen. Zo zorg je ervoor dat als JS niet werkt, de gebruiker nog steeds alle belangrijke fields kan zien.
+
+Ook heb ik bij de Initialen input gezorgd met JavaScript dat bij elke letter een punt erachter komt. Ik was erg tevreden met hoe dit eruit is gekomen!
 
 ### Vrijdag 14 Mar
 
-- Uitklap section
+Ik heb deze dag gewerkt aan de uitklap stukjes, waarvan 1 het erg goed doet, maar de andere werkt de eerste keer alleen als de pagina gerefreshed wordt, terwijl de code hetzelfde is. Ook deze bug heb ik helaas nog niet kunnen fixen.
 
 ## Week 4
 
 ### Woensdag 19 Mar
 
-Error messages gemaakt
+Ik heb deze dag de error messages gemaakt en de error state aangepast van een rode background color op de input naar dit:
 
-CSS Nesting veranderd voor oudere browsers
+![Error State](./images/error-state.png)
 
-Information hover
+Ook heb ik daarbij error messages gemaakt en samen ziet dat er zo uit:
 
-BUG JS Regel 121 (De code doet het alleen als de pagina refreshed)
-BUG DE HOVER VOOR DE EXTRA INFORMATIE GAAT OP HET PARENT ELEMENT
+![Error Message](./images/error-message.png)
+
+Daarnaast heb ik mijn CSS structuur aangepast. Ik gebruikte nog best veel CSS Nesting, omdat dit er voor mij duidelijker uitziet, maar toen ik ging kijken op [caniuse.com](https://caniuse.com/css-nesting) zag ik dat vooral de oudere browsers nog geen support hadden hiervoor, dus heb ik alle CSS nesting weg gehaald
+
+Ook heb ik een informatie stukje gemaakt die op hover tevoorschijn komt. Hier is wel een bug die ik heb gevonden. De hover werkt namelijk al op de parent, maar ik kan maar niet achterhalen waar dit aan ligt.
+
+Daarnaast heb ik een erfenis bereking uitgewerkt. Dit heeft uiteindelijk 2 uur geduurd, maar het werkt en de bereking is als volgt:
+
+![Inheritance Calculation](./images/berekening-erfenis.webp)
