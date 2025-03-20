@@ -39,99 +39,301 @@
         <h1>NS Aangifte Erfbelasting</h1>
 
         <form action="/" method="post">
-          <h2>Gegevens van de overledene</h2>
-          <fieldset name="1a">
-            <label>
-              Voorletters
-              <input
-                required
-                placeholder="Bijv. J.R."
-                type="text"
-                pattern="^(?=.*[A-Za-z])[A-Za-z. ]+$"
-                name="initials"
-                id="initials"
-              />
-            </label>
-            <label>
-              Tussenvoegsels
-              <input
-                placeholder="Bijv. van der"
-                type="text"
-                autocomplete="additional-name"
-                name="preposition"
-                id="preposition"
-              />
-            </label>
-            <label>
-              Achternaam
-              <input
-                required
-                placeholder="Bijv. Bakker"
-                type="text"
-                autocomplete="family-name"
-                name="last-name"
-                id="last-name"
-              />
-            </label>
-
-            <label class="social-security-number-label">
-              BSN (Burger Service Nummer) overledene
-              <!-- TODO: How to make input type number maxlength 1? -->
-              <div>
+          <div class="fieldset-container">
+            <fieldset name="1a" id="section1a">
+              <legend>Gegevens van de overledene</legend>
+              <div class="name-container">
+                <label>
+                  Voorletters
+                  <input
+                    required
+                    placeholder="Bijv. J.R."
+                    type="text"
+                    pattern="^(?=.*[A-Za-z])[A-Za-z. ]+$"
+                    name="initials"
+                    id="initials"
+                  />
+                </label>
+                <label>
+                  Tussenvoegsels
+                  <input
+                    placeholder="Bijv. van der"
+                    type="text"
+                    autocomplete="additional-name"
+                    name="preposition"
+                    id="preposition"
+                  />
+                </label>
+                <label>
+                  Achternaam
+                  <input
+                    required
+                    placeholder="Bijv. Bakker"
+                    type="text"
+                    autocomplete="family-name"
+                    name="last-name"
+                    id="last-name"
+                  />
+              </div>
+              </label>
+              <label class="social-security-number-label">
+                <div>
+                  <p>BSN (Burger Service Nummer) overledene</p>
+                  <button type="button" class="info-icon social-security-number">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                      <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                    </svg>
+                  </button>
+                </div>
+                
+                <div>
+                  <input
+                    required
+                    type="text"
+                    inputmode="numeric"
+                    name="social-security-number"
+                    id="social-security-number"
+                    maxlength="9"
+                    min="0"
+                    max="9"
+                    placeholder="918273645"
+                    pattern="\d{9}"
+                  />
+                </div>
+                <p class="error-message">Voer een geldig BSN-nummer in. Meer informatie? Zie <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                  <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                </svg></p>
+              </label>
+              <label>
+                Overlijdensdatum (DD-MM-YYYY)
                 <input
                   required
-                  type="text"
-                  inputmode="numeric"
-                  name="social-security-number"
-                  id="social-security-number-1"
-                  maxlength="9"
-                  min="0"
-                  max="9"
-                  placeholder="918273645"
-                  pattern="\d{9}"
+                  type="date"
+                  name="date-of-death"
+                  id="date-of-death"
+                  min="2004-03-11"
+                  max="2025-03-11"
                 />
+              </label>
+              <a href="#section1b" class="next-button">Volgende</a>
+            </fieldset>
+          </div>
+
+          <div class="fieldset-container">
+            <fieldset name="1b" id="section1b">
+              <p>
+                Was de overledene getrouwd of had de overledene een
+                geregistreerd partner op het moment van overlijden?
+              </p>
+              <label class="married-label">
+                Nee
+                <input required value="no" type="radio" name="married" id="n-married" />
+              </label>
+              <label class="married-label">
+                Ja
+                <input required value="yes" type="radio" name="married" id="y-married" />
+              </label>
+
+              <div class="partner-container">
+                <p>
+                  Hadden de overledene en diens echtgenoot of geregistreerd partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële akte?
+                </p>
+                <label class="marriage-contract-label">
+                  Nee
+                  <input value="no" type="radio" name="marriage-contract" id="n-marriage-contract" />
+                </label>
+                <label class="marriage-contract-label">
+                  Ja
+                  <input value="yes" type="radio" name="marriage-contract" id="y-marriage-contract" />
+                </label>
+
+
+                <label class="marriage-contract-file-label">
+                  Stuur een kopie van de akte mee met de aangifte.
+                  <input type="file" name="marriage-contract-file" id="marriage-contract-file">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 288c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128z"/>
+                  </svg>
+                </label>
+                
+
+                <p>
+                  Hadden de overledene en diens partner een finaal verrekenbeding?
+                </p>
+                <label class="final-settlement-clause-label">
+                  Nee
+                  <input value="no" type="radio" name="final-settlement-clause" id="n-final-settlement-clause" />
+                </label>
+                <label class="final-settlement-clause-label">
+                  Ja
+                  <input value="yes" type="radio" name="final-settlement-clause" id="y-final-settlement-clause" />
+                </label>
+
+                <label class="married-date-label">
+                  Datum huwelijkse of partnerschapsvoorwaarden (DD-MM-YYYY)
+                  <input min="1925-03-20" max="2025-03-11" type="date" name="marriage-date" id="marriage-date" />
+                </label>
               </div>
-            </label>
 
-            <label>
-              Overlijdensdatum
-              <input
-                required
-                type="date"
-                name="date-of-death"
-                id="date-of-death"
-                max="2025-03-11"
-              />
-            </label>
+              <div>
+                <a href="#section1a" class="next-button">Vorige</a>
+                <a href="#balance-inheritance" class="next-button">Volgende</a>
+              </div>
+            </fieldset>
+          </div>
 
-            <button type="submit" class="submit-button">Volgende</button>
-          </fieldset>
-
-          <fieldset name="1b">
-            Was de overledene getrouwd of had de overledene een geregistreerd
-            partner op het moment van overlijden?
-            <label class="married-label">
-              Ja
-              <input value="yes" type="radio" name="married" id="married" />
-            </label>
-            <label class="married-label">
-              Nee
-              <input value="no" type="radio" name="married" id="married" />
-            </label>
-          </fieldset>
-
-          <fieldset name="1c">
-            Was de overledene getrouwd of had de overledene een geregistreerd
-            partner op het moment van overlijden?
-            <label class="married-label">
-              Ja
-              <input value="yes" type="radio" name="married" id="married" />
-            </label>
-            <label class="married-label">
-              Nee
-              <input value="no" type="radio" name="married" id="married" />
-            </label>
-          </fieldset>
+          <div class="fieldset-container">
+            <fieldset class="balance-inheritance" id="balance-inheritance">
+              <legend>Erfenis Roerende zaken</legend>
+              <div>
+                <h2>Vermogen</h2>
+                <div class="general-value">
+                  <h3>Gemeenschappelijk vermogen</h3>
+                  <label>
+                    Inboedel
+                    <input
+                      required
+                      type="number"
+                      name="g-inboedel"
+                      id="g-inboedel"
+                    />
+                  </label>
+                  <label>
+                    Vervoersmiddel(en)
+                    <input
+                      required
+                      type="number"
+                      name="g-vervoersmiddel"
+                      id="g-vervoersmiddel"
+                    />
+                  </label>
+                  <label>
+                    Kunst en antiek
+                    <input required type="number" name="g-kunst" id="g-kunst" />
+                  </label>
+                  <label>
+                    Overige roerende zaken
+                    <input
+                      required
+                      type="number"
+                      name="g-overig"
+                      id="g-overig"
+                    />
+                  </label>
+                  <!-- <p hidden data-total-general-value></p> -->
+                </div>
+                <div class="private-value">
+                  <h3>Privévermogen</h3>
+                  <label>
+                    Inboedel
+                    <input
+                      required
+                      type="number"
+                      name="p-inboedel"
+                      id="p-inboedel"
+                    />
+                  </label>
+                  <label>
+                    Vervoersmiddel(en)
+                    <input
+                      required
+                      type="number"
+                      name="p-vervoersmiddel"
+                      id="p-vervoersmiddel"
+                    />
+                  </label>
+                  <label>
+                    Kunst en antiek
+                    <input required type="number" name="p-kunst" id="p-kunst" />
+                  </label>
+                  <label>
+                    Overige roerende zaken
+                    <input
+                      required
+                      type="number"
+                      name="p-overig"
+                      id="p-overig"
+                    />
+                  </label>
+                  <!-- <p hidden data-total-private-value></p> -->
+                </div>
+              </div>
+              <div>
+                <h2>Schulden</h2>
+                <div class="general-debt">
+                  <h3>Gemeenschappelijke schulden</h3>
+                  <label>
+                    Hypotheek
+                    <input
+                      required
+                      type="number"
+                      name="g-mortgage"
+                      id="g-mortgage"
+                    />
+                  </label>
+                  <label>
+                    Schenking
+                    <input required type="number" name="g-gift" id="g-gift" />
+                  </label>
+                  <!-- <p hidden data-total-general-debt></p> -->
+                </div>
+                <div class="private-debt">
+                  <h3>Privé schulden</h3>
+                  <label>
+                    Hypotheek
+                    <input
+                      required
+                      type="number"
+                      name="p-mortgage"
+                      id="p-mortgage"
+                    />
+                  </label>
+                  <label>
+                    Schenking
+                    <input required type="number" name="p-gift" id="p-gift" />
+                  </label>
+                  <!-- <p hidden data-total-private-debt></p> -->
+                </div>
+              </div>
+              <div class="funeral-expenses">
+                <h2>Uitgaven Uitvaart</h2>
+                <label>
+                  Ceremonie
+                  <input required type="number" name="ceremony" id="ceremony" />
+                </label>
+                <label>
+                  Catering
+                  <input required type="number" name="catering" id="catering" />
+                </label>
+                <!-- <p hidden data-total-funeral-expenses></p> -->
+              </div>
+              <div class="authorized-persons-container">
+                <h2>Gemachtigden</h2>
+                <label>
+                  <div>
+                    <p>Aantal gemachtigden</p>
+                    <button type="button" class="info-icon authorized-persons">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <input
+                    required
+                    type="number"
+                    name="authorized-persons"
+                    id="authorized-persons"
+                  />
+                  <p class="error-message">Voer het aantal gemachtigde personen in (minimaal 1). Meer informatie? Zie <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                    <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg></p>
+                </label>
+              </div>
+              <p hidden data-total-balance-inheritance></p>
+              <p hidden data-total-personal-balance-inheritance></p>
+              <button type="submit" class="submit-button">Verstuur</button>
+            </fieldset>
+          </div>
         </form>
       </section>
     </main>
@@ -142,19 +344,13 @@
 <!-- 
   TODO:
 
-  MAKE A FIELDSET FOR EACH QUESTION 1A, 1B ETC.
-  MAAK ALLES OP DEZELFDE PAGINA
+  5. README
+  6. COMMENTS SCHRIJVEN IN DE CODE
 
-  4. Getrouwd (1B) -> If yes klap andere vragen uit else go to 1C
-  5. Testament? (1D)
-  
-  6. Verkrijger toevoegen
-  7. Ja nee uitklappen
--->
+  EXTRA:
 
-<!-- 
-  TODO:
-
-  1. 
+  1. ZORG DAT JE VERKRIJGER/GEMACHTIGDE KAN TOEVOEGEN
+  2. ZORG DAT JE EEN OVERZICHT KAN ZIEN VAN DE INGEVULDE GEGEVENS
+  3. ZORG DAT JE DE FORM KAN DOWNLOADEN ALS PDF
 
 -->

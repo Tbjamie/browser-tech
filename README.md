@@ -59,14 +59,23 @@ Ik was helaas sinds dinsdag 4 Maart ziek geworden en heb geen werk kunnen doen.
 
 ### Woensdag 12 Mar
 
+Ik was helaas sinds dinsdag 4 Maart ziek geworden en heb geen werk kunnen doen.
+
 ### Donderdag 13 Mar
 
+Gewerkt aan code EERSTE TEST OP OUDE DEVICES
+
 ### Vrijdag 14 Mar
+
+Gewerkt aan code
 
 ## Week 4
 
 ### Woensdag 19 Mar
 
-### Donderdag 20 Mar
+Error messages gemaakt
 
-### Vrijdag 21 Mar
+CSS Nesting veranderd voor oudere browsers
+
+BUG JS Regel 121 (De code doet het alleen als de pagina refreshed)
+BUG DE HOVER VOOR DE EXTRA INFORMATIE GAAT OP HET PARENT ELEMENT

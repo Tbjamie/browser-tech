@@ -1,20 +1,170 @@
 // ELEMEMTS
 const inputFields = document.querySelectorAll("input");
 const dateOfDeathInput = document.querySelector("#date-of-death");
+const marriageDateInput = document.querySelector("#marriage-date");
 const form = document.querySelector("form");
 const submitButton = document.querySelector(".submit-button");
 const initialsInput = document.querySelector("#initials");
+const fieldsets = document.querySelectorAll("fieldset");
+const balanceInheritanceFields = document.querySelectorAll(
+  ".balance-inheritance input"
+);
+const totalValues = document.querySelectorAll(".balance-inheritance p");
+const partnerContainer = document.querySelector(".partner-container");
+const isNotMarriedField = document.querySelector("#n-married");
+const isMarriedField = document.querySelector("#y-married");
+const marriedFields = [isNotMarriedField, isMarriedField];
+const marriageContractFieldYes = document.querySelector("#y-marriage-contract");
+const marriageContractFieldNo = document.querySelector("#n-marriage-contract");
+const marriageContractFields = [
+  marriageContractFieldYes,
+  marriageContractFieldNo,
+];
+const marriageContractFileLabel = document.querySelector(
+  ".marriage-contract-file-label"
+);
+
+// Balance Inheritance Input Fields
+
+// VALUE input fields
+const generalInboedelField = document.querySelector("input[name='g-inboedel']");
+const privateInboedelField = document.querySelector("input[name='p-inboedel']");
+const generalVervoersmiddelField = document.querySelector(
+  "input[name='g-vervoersmiddel']"
+);
+const privateVervoersmiddelField = document.querySelector(
+  "input[name='p-vervoersmiddel']"
+);
+
+const generalKunstField = document.querySelector("input[name='g-kunst']");
+const privateKunstField = document.querySelector("input[name='p-kunst']");
+const generalOverigField = document.querySelector("input[name='g-overig']");
+const privateOverigField = document.querySelector("input[name='p-overig']");
+
+// DEBT Input Fields
+
+const generalMortgageField = document.querySelector("input[name='g-mortgage']");
+const privateMortgageField = document.querySelector("input[name='p-mortgage']");
+const generalGiftField = document.querySelector("input[name='g-gift']");
+const privateGiftField = document.querySelector("input[name='p-gift']");
+
+// FUNEREAL EXPENSES Input Fields
+
+const ceremonyField = document.querySelector("input[name='ceremony']");
+const cateringField = document.querySelector("input[name='catering']");
+
+// AUTHORIZED PERSONS Input Fields
+
+const authorizedPersonsField = document.querySelector(
+  "input[name='authorized-persons']"
+);
+
+// TOTAL VALUES
+
+const totalBalanceInheritance = document.querySelector(
+  "p[data-total-balance-inheritance]"
+);
+const totalPersonalBalanceInheritance = document.querySelector(
+  "p[data-total-personal-balance-inheritance]"
+);
 
 // VARS
 const date = new Date();
 
+totalValues.forEach((value) => {
+  value.removeAttribute("hidden");
+});
+
+marriedFields.forEach((field) => {
+  field.addEventListener("change", () => {
+    if (!isMarriedField.checked) {
+      partnerContainer.style.maxHeight = "0";
+    } else {
+      partnerContainer.style.maxHeight = partnerContainer.scrollHeight + "px";
+    }
+  });
+});
+
+marriageContractFields.forEach((field) => {
+  field.addEventListener("change", () => {
+    if (!marriageContractFieldYes.checked) {
+      marriageContractFileLabel.style.maxHeight = "0";
+    } else {
+      marriageContractFileLabel.style.maxHeight = "50vh";
+    }
+  });
+});
+
+dateOfDeathInput.addEventListener("input", () => {
+  marriageDateInput.setAttribute(
+    "max",
+    dateOfDeathInput.value
+      ? dateOfDeathInput.value
+      : date.toISOString().split("T")[0]
+  );
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  marriageDateInput.setAttribute(
+    "max",
+    localStorage.getItem(dateOfDeathInput.id)
+      ? localStorage.getItem(dateOfDeathInput.id)
+      : date.toISOString().split("T")[0]
+  );
+
+  if (!isMarriedField.checked) {
+    partnerContainer.style.maxHeight = "0";
+  } else {
+    partnerContainer.style.maxHeight = partnerContainer.scrollHeight + "px";
+  }
+
+  if (!marriageContractFieldYes.checked) {
+    marriageContractFileLabel.style.maxHeight = "0";
+  } else {
+    marriageContractFileLabel.style.maxHeight = "50vh";
+  }
+});
+
 inputFields.forEach((inputField) => {
+  if (inputField.type === "file") {
+    if (inputField.type !== "file" && localStorage.getItem(inputField.id)) {
+      inputField.value = localStorage.getItem(inputField.id);
+    }
+
+    inputField.addEventListener("change", () => {
+      localStorage.setItem(inputField.id, inputField.files[0].name);
+    });
+
+    return;
+  }
+
   if (localStorage.getItem(inputField.id)) {
     inputField.value = localStorage.getItem(inputField.id);
   }
+
   inputField.addEventListener("input", () => {
     localStorage.setItem(inputField.id, inputField.value);
   });
+
+  if (inputField.type === "radio" || inputField.type === "checkbox") {
+    if (localStorage.getItem(inputField.id)) {
+      inputField.checked = localStorage.getItem(inputField.id) === "true";
+    }
+
+    inputField.addEventListener("change", () => {
+      localStorage.setItem(inputField.id, inputField.checked);
+
+      if (inputField.type === "radio" && inputField.checked) {
+        const name = inputField.name;
+        inputFields.forEach((field) => {
+          if (field.name === name && field !== inputField) {
+            field.checked = false;
+            localStorage.setItem(field.id, false);
+          }
+        });
+      }
+    });
+  }
 });
 
 dateOfDeathInput.setAttribute("max", date.toISOString().split("T")[0]);
@@ -30,6 +180,79 @@ initialsInput.addEventListener("keyup", (e) => {
   initialsInput.value = initialsInput.value + ".";
 });
 
-// Check if someone added the dot
-// Remove the dot if a character is deleted
-// Check how many keypresses for deleting a character
+// Balance Inheritance Calculation
+
+// FUNCTIES OM TUSSENTOTALEN TE BEREKENEN
+
+function totalValueCalculation() {
+  const value =
+    (Number(generalInboedelField.value) +
+      Number(generalVervoersmiddelField.value) +
+      Number(generalKunstField.value) +
+      Number(generalOverigField.value)) /
+      4 +
+    Number(privateInboedelField.value) +
+    Number(privateVervoersmiddelField.value) +
+    Number(privateKunstField.value) +
+    Number(privateOverigField.value);
+
+  return value;
+}
+
+function totalDebtCalculation() {
+  const debt =
+    (Number(generalMortgageField.value) + Number(generalGiftField.value)) / 2 +
+    Number(privateMortgageField.value) +
+    Number(privateGiftField.value);
+
+  return debt;
+}
+
+function totalFuneralExpensesCalculation() {
+  const funeralExpenses =
+    Number(ceremonyField.value) + Number(cateringField.value);
+
+  return funeralExpenses;
+}
+
+function totalBalanceInheritanceCalculation() {
+  const balanceInheritance =
+    totalValueCalculation() -
+    totalDebtCalculation() -
+    totalFuneralExpensesCalculation();
+
+  return balanceInheritance;
+}
+
+function totalPersonalBalanceInheritanceCalculation() {
+  let authorized = 1;
+  if (authorizedPersonsField.value > 1) {
+    authorized = authorizedPersonsField.value;
+  }
+
+  const total = totalBalanceInheritanceCalculation() / authorized;
+
+  return total;
+}
+
+// TOTALE BEREKENING
+
+function calculateTotal() {
+  totalBalanceInheritance.innerHTML = `<strong>Totaal:</strong> €${totalBalanceInheritanceCalculation().toFixed(
+    2
+  )}`;
+
+  totalPersonalBalanceInheritance.innerHTML = `<strong>Per Persoon:</strong> €${totalPersonalBalanceInheritanceCalculation().toFixed(
+    2
+  )}`;
+}
+
+balanceInheritanceFields.forEach((field) => {
+  document.addEventListener("DOMContentLoaded", () => {
+    calculateTotal();
+  });
+
+  field.addEventListener("input", () => {
+    calculateTotal();
+  });
+});
